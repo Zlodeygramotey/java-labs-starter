@@ -55,41 +55,24 @@ public class DataSample {
         return features.clone();
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public SampleStatus getStatus() {
-        return status;
-    }
+    public String getId() { return id; }
+    public String getLabel() { return label; }
+    public SampleStatus getStatus() { return status; }
 
     public double[] normalizedFeatures() {
         double min = features[0];
         double max = features[0];
-
         for (double feature : features) {
-            if (feature < min) {
-                min = feature;
-            }
-            if (feature > max) {
-                max = feature;
-            }
+            if (feature < min) min = feature;
+            if (feature > max) max = feature;
         }
-
         double[] result = new double[features.length];
-
         if (min == max) {
             return features.clone();
         }
-
         for (int i = 0; i < features.length; i++) {
             result[i] = (features[i] - min) / (max - min);
         }
-
         return result;
     }
 }
